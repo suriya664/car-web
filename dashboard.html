@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VELOCITY BLACK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+    <style>
+        body {
+            padding-top: 0;
+            background: var(--primary);
+        }
+        
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: var(--text);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+        }
+        
+        .back-home-btn:hover {
+            background: var(--highlight);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.6);
+        }
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .dashboard-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .dashboard-header p {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .dashboard-card {
+            background: var(--subtle);
+            border: 2px solid var(--extra);
+            padding: 2rem;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .dashboard-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.3);
+        }
+        
+        .dashboard-card-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .dashboard-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            text-align: center;
+        }
+        
+        .dashboard-card p {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--secondary);
+            font-family: var(--font-heading);
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        
+        .recent-bookings {
+            background: var(--subtle);
+            border: 2px solid var(--extra);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
+        }
+        
+        .recent-bookings h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            text-align: center;
+        }
+        
+        .booking-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--primary);
+            border: 1px solid var(--extra);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .booking-item:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .booking-info {
+            text-align: center;
+            width: 100%;
+        }
+        
+        .booking-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            text-align: center;
+        }
+        
+        .booking-info p {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin: 0.3rem 0;
+            text-align: center;
+        }
+        
+        .booking-status {
+            padding: 0.5rem 1rem;
+            background: var(--secondary);
+            color: var(--text);
+            font-weight: 600;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--subtle);
+            border: 2px solid var(--extra);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+        }
+        
+        .action-btn:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.3);
+        }
+        
+        .action-btn i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .action-btn h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .action-btn p {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+        
+        @media (max-width: 1024px) {
+            .dashboard-card {
+                text-align: center;
+            }
+            
+            .stat-value {
+                text-align: center;
+            }
+            
+            .stat-label {
+                text-align: center;
+            }
+            
+            .dashboard-card p {
+                text-align: center;
+            }
+            
+            .dashboard-card h3 {
+                text-align: center;
+            }
+            
+            .booking-item {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .booking-info {
+                text-align: center;
+                width: 100%;
+            }
+            
+            .booking-info h4 {
+                text-align: center;
+            }
+            
+            .booking-info p {
+                text-align: center;
+            }
+            
+            .booking-status {
+                text-align: center;
+                margin-top: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .back-home-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+                top: 15px;
+                left: 15px;
+            }
+            
+            .dashboard-container {
+                padding: 2rem 1rem;
+            }
+            
+            .dashboard-header h1 {
+                font-size: 2rem;
+            }
+            
+            .booking-item {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .booking-info {
+                text-align: center;
+                width: 100%;
+            }
+            
+            .booking-info h4 {
+                text-align: center;
+            }
+            
+            .booking-info p {
+                text-align: center;
+            }
+            
+            .booking-status {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-card {
+                text-align: center;
+            }
+            
+            .stat-value {
+                text-align: center;
+            }
+            
+            .stat-label {
+                text-align: center;
+            }
+            
+            .dashboard-card p {
+                text-align: center;
+            }
+            
+            .dashboard-card h3 {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">
+        <i class="fas fa-home"></i>
+    </a>
+    <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <p>Welcome back! Here's an overview of your account</p>
+        </div>
+
+        <!-- Statistics Grid -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-value">12</div>
+                <div class="stat-label">Active Bookings</div>
+                <p>You have 12 active car rentals</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <div class="stat-value">45</div>
+                <div class="stat-label">Total Rentals</div>
+                <p>You've completed 45 rentals with us</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-value">4.8</div>
+                <div class="stat-label">Average Rating</div>
+                <p>Based on your rental history</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-value">$2,450</div>
+                <div class="stat-label">Total Spent</div>
+                <p>This month's rental expenses</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="stat-value">8</div>
+                <div class="stat-label">Favorite Cars</div>
+                <p>Cars you've rented multiple times</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-value">156</div>
+                <div class="stat-label">Days Rented</div>
+                <p>Total days you've rented vehicles</p>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section-title">
+            <h2>Quick Actions</h2>
+        </div>
+        <div class="quick-actions">
+            <a href="fleet.html" class="action-btn">
+                <i class="fas fa-search"></i>
+                <h3>Book a Car</h3>
+                <p>Browse our fleet and make a reservation</p>
+            </a>
+            
+            <a href="contact.html" class="action-btn">
+                <i class="fas fa-headset"></i>
+                <h3>Contact Support</h3>
+                <p>Get help from our 24/7 support team</p>
+            </a>
+            
+            <a href="locations.html" class="action-btn">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Find Locations</h3>
+                <p>Locate our rental offices near you</p>
+            </a>
+            
+            <a href="services.html" class="action-btn">
+                <i class="fas fa-cog"></i>
+                <h3>Manage Services</h3>
+                <p>View and update your service preferences</p>
+            </a>
+        </div>
+
+        <!-- Recent Bookings -->
+        <div class="recent-bookings">
+            <h2>Recent Bookings</h2>
+            
+            <div class="booking-item">
+                <div class="booking-info">
+                    <h4>Mercedes-Benz E-Class</h4>
+                    <p><i class="fas fa-calendar"></i> Pickup: Jan 15, 2025 at 10:00 AM</p>
+                    <p><i class="fas fa-calendar-check"></i> Return: Jan 18, 2025 at 10:00 AM</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Downtown Location</p>
+                </div>
+                <div class="booking-status">Active</div>
+            </div>
+            
+            <div class="booking-item">
+                <div class="booking-info">
+                    <h4>BMW M4 Coupe</h4>
+                    <p><i class="fas fa-calendar"></i> Pickup: Jan 10, 2025 at 2:00 PM</p>
+                    <p><i class="fas fa-calendar-check"></i> Return: Jan 12, 2025 at 2:00 PM</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Airport Location</p>
+                </div>
+                <div class="booking-status">Completed</div>
+            </div>
+            
+            <div class="booking-item">
+                <div class="booking-info">
+                    <h4>Range Rover Sport</h4>
+                    <p><i class="fas fa-calendar"></i> Pickup: Jan 5, 2025 at 9:00 AM</p>
+                    <p><i class="fas fa-calendar-check"></i> Return: Jan 8, 2025 at 9:00 AM</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Train Station Location</p>
+                </div>
+                <div class="booking-status">Completed</div>
+            </div>
+            
+            <div class="booking-item">
+                <div class="booking-info">
+                    <h4>Tesla Model 3</h4>
+                    <p><i class="fas fa-calendar"></i> Pickup: Dec 28, 2024 at 11:00 AM</p>
+                    <p><i class="fas fa-calendar-check"></i> Return: Dec 30, 2024 at 11:00 AM</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Downtown Location</p>
+                </div>
+                <div class="booking-status">Completed</div>
+            </div>
+        </div>
+
+        <!-- Account Information -->
+        <div class="section-title">
+            <h2>Account Information</h2>
+        </div>
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Profile Details</h3>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Member Since:</strong> January 2023</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <h3>License Information</h3>
+                <p><strong>License Number:</strong> DL-123456789</p>
+                <p><strong>Expiry Date:</strong> December 2026</p>
+                <p><strong>Status:</strong> Valid</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Payment Methods</h3>
+                <p><strong>Primary Card:</strong> **** **** **** 4567</p>
+                <p><strong>Card Type:</strong> Visa</p>
+                <p><strong>Expiry:</strong> 12/25</p>
+            </div>
+        </div>
+
+        <!-- Preferences -->
+        <div class="section-title">
+            <h2>Preferences</h2>
+        </div>
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-car-side"></i>
+                </div>
+                <h3>Preferred Car Type</h3>
+                <p>Luxury Sedan</p>
+                <p>You frequently rent luxury vehicles</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-map-pin"></i>
+                </div>
+                <h3>Preferred Location</h3>
+                <p>Downtown Office</p>
+                <p>Your most used pickup location</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="dashboard-card-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Notifications</h3>
+                <p>Email & SMS enabled</p>
+                <p>Receive updates about your bookings</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+

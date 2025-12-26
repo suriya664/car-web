@@ -1,0 +1,1546 @@
+/* ============================================
+   VELOCITY BLACK - CAR RENTAL THEME
+   ============================================ */
+
+/* ===== GOOGLE FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --primary: #0D0D0D;
+  --secondary: #DC143C;
+  --accent: #C0C0C0;
+  --text: #FFFFFF;
+  --subtle: #1A1A1A;
+  --highlight: #FF4500;
+  --extra: #2D2D2D;
+  
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --font-accent: 'Rajdhani', sans-serif;
+}
+
+/* ===== RESET & BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global smooth transitions */
+* {
+  transition-timing-function: ease-in-out;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background-color: var(--primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-top: 0; /* Navbar is fixed, no padding needed */
+}
+
+/* ===== CARBON FIBER TEXTURE ===== */
+.carbon-fiber {
+  background-image: 
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, transparent 1px, transparent 2px, rgba(255,255,255,0.03) 3px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, transparent 1px, transparent 2px, rgba(255,255,255,0.03) 3px);
+  background-color: var(--primary);
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  text-align: center; /* Center all headings */
+}
+
+h1 { font-size: 3.5rem; font-weight: 900; text-align: center; }
+h2 { font-size: 2.5rem; font-weight: 700; text-align: center; }
+h3 { font-size: 1.8rem; font-weight: 600; text-align: center; }
+h4 { font-size: 1.4rem; font-weight: 500; text-align: center; }
+
+p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center; /* Center all paragraphs */
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--primary);
+  padding: 1rem 0;
+  z-index: 1000;
+  border-bottom: 2px solid var(--secondary);
+  box-shadow: 0 4px 20px rgba(220, 20, 60, 0.3);
+  overflow: visible; /* Ensure text is not clipped */
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: visible; /* Ensure content is not clipped */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(192, 192, 192, 0.8);
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* Prevent logo from shrinking */
+  white-space: nowrap;
+}
+
+.logo:hover {
+  color: var(--secondary);
+  text-shadow: 0 0 30px rgba(220, 20, 60, 1);
+  transform: scale(1.05);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0; /* Prevent menu from shrinking */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li a {
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5rem 0.8rem;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap; /* Prevent text wrapping */
+  display: inline-block; /* Ensure proper display */
+}
+
+.nav-menu li a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--secondary);
+  transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+  width: 80%;
+}
+
+.nav-menu li a.active::after {
+  display: none; /* Hide underline when active since we have background */
+}
+
+.nav-menu li a:hover {
+  color: var(--secondary);
+}
+
+.nav-menu li a.active {
+  background: var(--secondary);
+  color: var(--text); /* White text on red background */
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+}
+
+/* ===== DROPDOWN MENU ===== */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.dropdown-toggle i {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-dropdown:hover .dropdown-toggle i {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary);
+  border: 2px solid var(--secondary);
+  border-radius: 10px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0 0 0;
+  min-width: 180px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(220, 20, 60, 0.3);
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border-radius: 0;
+}
+
+.dropdown-menu li a:hover {
+  background: var(--secondary);
+  color: var(--text);
+  padding-left: 2rem;
+}
+
+.dropdown-menu li a.active {
+  background: var(--secondary);
+  color: var(--text);
+  border-radius: 0;
+  padding: 0.8rem 1.5rem;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-shrink: 0; /* Prevent icons from shrinking */
+}
+
+.nav-icons a {
+  color: var(--accent);
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.nav-icons a:hover {
+  color: var(--secondary);
+  transform: scale(1.2);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.8rem;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevent toggle from shrinking */
+  padding: 0.5rem;
+  align-self: center;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--highlight) 100%);
+  color: var(--text);
+  letter-spacing: 1px;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--primary);
+  box-shadow: 0 0 30px rgba(192, 192, 192, 0.8);
+  transform: translateY(-3px) scale(1.05);
+  letter-spacing: 2px;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.btn-secondary:hover {
+  background: var(--secondary);
+  color: var(--text);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 5px 20px rgba(220, 20, 60, 0.6);
+  letter-spacing: 2px;
+}
+
+/* Ensure btn-secondary hover overrides btn hover for buttons with both classes */
+.btn.btn-secondary:hover {
+  background: var(--secondary) !important;
+  color: var(--text) !important;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background-color: var(--primary);
+  border-top: 4px solid var(--secondary);
+  border: 1px solid var(--extra);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center; /* Center all text in cards */
+  align-items: center; /* Center card content */
+}
+
+/* Service card button alignment */
+.service-card .btn {
+  margin-top: auto;
+  align-self: center;
+  width: auto;
+  min-width: 150px;
+  display: inline-block;
+}
+
+.card p,
+.card h3,
+.card h4 {
+  text-align: center;
+  width: 100%;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--secondary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(220, 20, 60, 0.5);
+  background-color: var(--subtle);
+}
+
+/* Card icon hover effect */
+.card:hover i {
+  transform: scale(1.2) rotate(5deg);
+  color: var(--secondary);
+  transition: all 0.3s ease;
+}
+
+.card i {
+  transition: all 0.3s ease;
+}
+
+/* Card text hover effect */
+.card:hover h3 {
+  color: var(--secondary);
+  transition: color 0.3s ease;
+}
+
+.card:hover p {
+  color: var(--accent);
+  transition: color 0.3s ease;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 0; /* No margin needed as navbar is fixed */
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -2;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(13, 13, 13, 0.85) 0%, rgba(220, 20, 60, 0.3) 100%);
+  z-index: -1;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 30px rgba(220, 20, 60, 0.8);
+  animation: fadeInUp 1s ease;
+  transition: all 0.3s ease;
+}
+
+.hero-content:hover h1 {
+  transform: scale(1.05);
+  text-shadow: 0 0 40px rgba(220, 20, 60, 1);
+  color: var(--secondary);
+}
+
+/* Additional hover effects for form elements */
+.booking-form:hover {
+  transform: scale(1.01);
+  transition: all 0.3s ease;
+}
+
+.booking-form {
+  transition: all 0.3s ease;
+}
+
+.booking-widget {
+  background: rgba(13, 13, 13, 0.95);
+  border: 2px solid var(--secondary);
+  padding: 2.5rem;
+  margin-top: 3rem;
+  clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
+  box-shadow: 0 10px 50px rgba(220, 20, 60, 0.4);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.booking-widget:hover {
+  box-shadow: 0 15px 60px rgba(220, 20, 60, 0.6);
+  border-color: var(--highlight);
+  transform: translateY(-5px);
+}
+
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-family: var(--font-accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px;
+  background: var(--subtle);
+  border: 1px solid var(--extra);
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+  border-color: var(--accent);
+  background: var(--extra);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.5);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+.form-group label:hover {
+  color: var(--secondary);
+  transition: color 0.3s ease;
+}
+
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.trust-badge:hover {
+  background: rgba(220, 20, 60, 0.2);
+  color: var(--secondary);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+}
+
+.trust-badge:hover i {
+  transform: rotate(360deg) scale(1.3);
+  color: var(--secondary);
+}
+
+.trust-badge i {
+  transition: all 0.5s ease;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.section-title h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1rem;
+  margin: 0 auto;
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+  transition: all 0.3s ease;
+}
+
+.section-title:hover h2 {
+  color: var(--secondary);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.section-title h2 {
+  transition: all 0.3s ease;
+}
+
+.section-title:hover h2::after {
+  width: 150px;
+  height: 4px;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.6);
+}
+
+/* ===== GRID LAYOUTS ===== */
+.grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start; /* Align items to start for consistent alignment */
+  justify-items: stretch; /* Stretch items to fill grid cells */
+}
+
+/* Center grid items content */
+.grid > * {
+  width: 100%;
+  max-width: 100%;
+}
+
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+/* ===== CAR CARDS ===== */
+.car-card {
+  background: var(--primary);
+  border-top: 4px solid var(--secondary);
+  border: 1px solid var(--extra);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.car-card-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.car-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.car-card:hover .car-card-image img {
+  transform: scale(1.1) rotate(2deg);
+  filter: brightness(1.2) contrast(1.1);
+}
+
+.car-card-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(220, 20, 60, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.car-card:hover .car-card-image::after {
+  opacity: 1;
+}
+
+/* Enhanced car card hover effects */
+.car-card:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 15px 50px rgba(220, 20, 60, 0.6);
+  border-color: var(--secondary);
+}
+
+.car-card:hover .car-card-title {
+  color: var(--secondary);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.car-card-title {
+  transition: all 0.3s ease;
+}
+
+.car-card:hover .car-card-price {
+  color: var(--highlight);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.car-card-price {
+  transition: all 0.3s ease;
+}
+
+.car-card:hover .car-card-category {
+  background: var(--highlight);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.car-card-category {
+  transition: all 0.3s ease;
+}
+
+.car-card:hover .car-card-features span {
+  color: var(--text);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.car-card-features span {
+  transition: all 0.3s ease;
+}
+
+.car-card:hover .car-card-features i {
+  color: var(--secondary);
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
+.car-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: center; /* Center all text in car cards */
+  align-items: center; /* Center card content */
+}
+
+.car-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  text-align: center;
+  width: 100%;
+}
+
+.car-card-category {
+  display: inline-block;
+  background: var(--secondary);
+  color: var(--text);
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  text-align: center;
+}
+
+.car-card-price {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.car-card-features {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.car-card-features span {
+  text-align: center;
+}
+
+.car-card-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto; /* Push actions to bottom */
+  width: 100%;
+  justify-content: center; /* Center buttons */
+  align-items: stretch; /* Align buttons in straight line - same height */
+  flex-wrap: nowrap; /* Keep buttons in one line */
+}
+
+.car-card-actions .btn {
+  flex: 1;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  text-align: center;
+  min-width: 0; /* Allow buttons to shrink if needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.car-card:hover .car-card-actions .btn {
+  box-shadow: 0 5px 20px rgba(220, 20, 60, 0.5);
+}
+
+.car-card:hover .car-card-actions .btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  z-index: 10;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--primary);
+  border-top: 2px solid var(--secondary);
+  padding: 4rem 2rem 2rem;
+  margin-top: 5rem;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-section h3 {
+  font-family: var(--font-heading);
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.footer-section:hover h3 {
+  color: var(--highlight);
+  transform: scale(1.05);
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: var(--font-body);
+}
+
+.footer-section ul li a:hover {
+  color: var(--secondary);
+  padding-left: 10px;
+  transform: translateX(5px);
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+  transition: all 0.3s ease;
+}
+
+.footer-section ul li a {
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--subtle);
+  color: var(--accent);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.footer-social a:hover {
+  background: var(--subtle);
+  color: var(--secondary);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--extra);
+  text-align: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== BACK TO TOP BUTTON ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--secondary);
+  color: var(--text);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  z-index: 999;
+  transition: all 0.3s ease;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+}
+
+.back-to-top:hover {
+  background: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(220, 20, 60, 0.6);
+}
+
+.back-to-top.show {
+  display: flex;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, input, select, .card, .car-card, .btn {
+  transition: all 0.3s ease;
+}
+
+/* Image hover effects */
+img {
+  transition: all 0.3s ease;
+}
+
+img:hover {
+  filter: brightness(1.1);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  /* First section after navbar needs extra top padding on tablet/laptop */
+  .section:first-of-type {
+    padding-top: 7rem;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: var(--primary);
+    flex-direction: column;
+    padding: 2rem;
+    transition: left 0.3s ease;
+    border-top: 2px solid var(--secondary);
+    overflow-y: auto; /* Allow scrolling if menu is too long */
+    z-index: 999; /* Ensure menu is below navbar but above content */
+    align-items: flex-start; /* Align menu items to start on mobile */
+    gap: 0.5rem;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  /* Hide hero subtitle on mobile/tablet */
+  .hero-subtitle {
+    display: none;
+  }
+
+  /* Dropdown menu styles for mobile */
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+    width: 100%;
+    margin: 0.5rem 0 0 1rem;
+    border: none;
+    border-left: 2px solid var(--secondary);
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .nav-dropdown:hover .dropdown-menu,
+  .nav-dropdown.active .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu li a {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .dropdown-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-icons {
+    display: none; /* Hide nav icons on tablet/mobile - they'll be in hamburger menu */
+  }
+
+  /* Style mobile menu buttons */
+  .mobile-nav-icons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 2px solid var(--secondary);
+  }
+
+  .mobile-nav-icons a {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .hero {
+    overflow-y: auto;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .hero-content {
+    padding: 0 1rem;
+    margin-top: 1rem;
+  }
+
+  .booking-form {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: auto;
+  }
+
+  .form-group:first-child {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .form-group label,
+  .form-group select,
+  .form-group input {
+    width: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    min-height: auto;
+  }
+
+  #pickup-location {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+  }
+
+  .booking-widget {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    overflow: visible;
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+  
+  /* First section after navbar needs extra top padding */
+  .section:first-of-type {
+    padding-top: 6rem;
+  }
+
+  .hero {
+    min-height: auto;
+    height: auto;
+    padding: 2rem 0;
+    overflow-y: visible;
+    align-items: flex-start;
+  }
+
+  .hero-content {
+    padding: 0 1rem;
+    margin-top: 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .booking-widget {
+    padding: 1.5rem;
+    margin-top: 1rem;
+    overflow: visible;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .booking-form {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .form-group {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-bottom: 0;
+    min-height: auto;
+  }
+
+  .form-group:first-child {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .form-group label {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group select,
+  .form-group input {
+    width: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    box-sizing: border-box;
+    min-height: auto;
+  }
+
+  #pickup-location {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+  }
+
+  .trust-badges {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== PARTNERS SECTION ===== */
+.partners-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  opacity: 0.7;
+  width: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.partners-container:hover {
+  opacity: 1;
+}
+
+.partner-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.partner-brand:hover {
+  color: var(--secondary);
+  transform: translateY(-10px) scale(1.15);
+  text-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+  background: rgba(220, 20, 60, 0.1);
+  border-radius: 10px;
+  padding: 0.5rem 1.5rem;
+}
+
+/* ===== TESTIMONIALS ===== */
+.card .fas.fa-star {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.card:hover .fas.fa-star {
+  transform: scale(1.2) rotate(15deg);
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+/* Testimonial card specific hover */
+.card:hover div[style*="width: 50px"] {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 5px 15px rgba(220, 20, 60, 0.5);
+  transition: all 0.3s ease;
+}
+
+.card div[style*="width: 50px"] {
+  transition: all 0.3s ease;
+}
+
+.card div[style*="color: #FFD700"] {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.card div[style*="margin-top: 1.5rem"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.card div[style*="margin-top: 1.5rem"] > div {
+  text-align: center;
+}
+
+.card div[style*="margin-top: 1.5rem"] strong {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-center { 
+  text-align: center; 
+  width: 100%;
+}
+
+/* Center all card content */
+.card > * {
+  text-align: center;
+}
+
+.card strong {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.card i {
+  display: block;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+/* Center list items within cards only */
+.card ul li,
+.card li {
+  text-align: center;
+}
+
+/* Center span elements in cards */
+.card span,
+.car-card-content span {
+  text-align: center;
+}
+
+/* Ensure all buttons in cards are aligned */
+.card .btn {
+  align-self: center;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+/* Center special offer cards content */
+.card[style*="background: linear-gradient"] {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card[style*="background: linear-gradient"] h3,
+.card[style*="background: linear-gradient"] p {
+  text-align: center;
+  width: 100%;
+}
+
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+
+/* ===== CONTACT PAGE ALIGNMENT ===== */
+.contact-wrapper {
+    display: grid;
+    align-items: start;
+    width: 100%;
+}
+
+.contact-form-container,
+.contact-info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form-box {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-form {
+    width: 100%;
+}
+
+.contact-form .form-group {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-form .form-group input,
+.contact-form .form-group textarea,
+.contact-form .form-group select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-info-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.contact-info-box {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.contact-info-box h3,
+.contact-info-box p,
+.contact-info-box a {
+    width: 100%;
+    text-align: center;
+}
+
+.map-container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.map-container iframe {
+    width: 100%;
+    display: block;
+}
+
+/* Ensure all form elements align properly */
+.contact-form-box .form-group label {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.contact-form-box .form-group input,
+.contact-form-box .form-group textarea,
+.contact-form-box .form-group select {
+    display: block;
+    width: 100%;
+}
+
+/* Ensure contact info boxes have equal heights and alignment */
+@media (min-width: 1025px) {
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info-box {
+        min-height: auto;
+    }
+}
+
+/* Ensure proper alignment on all screen sizes */
+@media (max-width: 1024px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form-box,
+    .contact-info-grid {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+

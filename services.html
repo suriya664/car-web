@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - VELOCITY BLACK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(220, 20, 60, 0.7) 100%), url('https://images.unsplash.com/photo-1492144534655-ae79c2c03457?w=1920&h=600&fit=crop') center/cover;
+            padding: 150px 2rem 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+        .service-card {
+            text-align: center;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .service-card .btn {
+            margin-top: auto;
+            align-self: center;
+            width: auto;
+            min-width: 150px;
+        }
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        .membership-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .membership-card {
+            background: var(--subtle);
+            padding: 2.5rem;
+            border: 2px solid var(--extra);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .membership-card ul {
+            flex-grow: 1;
+        }
+        .membership-card .btn {
+            margin-top: auto;
+            align-self: stretch;
+            width: 100%;
+        }
+        .membership-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-10px);
+        }
+        .membership-card.featured {
+            border-color: var(--secondary);
+            background: linear-gradient(135deg, var(--subtle) 0%, rgba(220, 20, 60, 0.1) 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">VELOCITY BLACK</a>
+            <ul class="nav-menu">
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle">Home <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html">Home Page</a></li>
+                        <li><a href="index2.html">Home Page 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="fleet.html">Fleet</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="dashboard.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.9rem;">Dashboard</a>
+                <a href="login.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.9rem;">Login</a>
+                <a href="register.html" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Register</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <h1>Our Services</h1>
+        <p style="font-size: 1.2rem; margin-top: 1rem;">Comprehensive car rental solutions for every need</p>
+    </section>
+
+    <!-- CORE SERVICES -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Core Services</h2>
+        </div>
+        <div class="grid grid-3">
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <h3>Airport Transfer</h3>
+                <p>Seamless airport pickup and drop-off service. We'll meet you at the terminal with your vehicle ready to go.</p>
+                <a href="contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Long-term rentel</h3>
+                <p>Extended rental options for business or personal use. Special rates and for rentals over 7 days or weak.</p>
+                <a href="contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Corporate Rental</h3>
+                <p>Tailored solutions for businesses. Fleet management, invoicing, and dedicated account.</p>
+                <a href="contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Wedding Car Rental</h3>
+                <p>Make your special day unforgettable with our luxury wedding car. Professionalservice available.</p>
+                <a href="contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Chauffeur Service</h3>
+                <p>Professional chauffeur-driven vehicles for the  business meetings, events, or special occasions.</p>
+                <a href="contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3>One-Way Rental</h3>
+                <p>Rent a car in one location and return it to another. Perfect for road trips and relocations and etc </p>
+                <a href="contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <h3>Luxury Car Rental</h3>
+                <p>Experience the ultimate in comfort and style with our luxury vehicle collection. Perfect for special occasions.</p>
+                <a href="contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            <div class="card service-card">
+                <div class="service-icon">
+                    <i class="fas fa-motorcycle"></i>
+                </div>
+                <h3>Sports Car Rental</h3>
+                <p>Feel the thrill of driving high-performance sports cars. Perfect for weekend sand special events.</p>
+                <a href="contact.html" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADDITIONAL SERVICES -->
+    <section class="section" style="background: var(--subtle);">
+        <div class="section-title">
+            <h2>Additional Services</h2>
+        </div>
+        <div class="grid grid-3">
+            <div class="card">
+                <h3><i class="fas fa-map-marked-alt" style="color: var(--secondary); margin-right: 0.5rem;"></i>GPS Navigation Rental</h3>
+                <p>Add GPS navigation to your rental for just $5/day. Never get lost on your journey.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-baby" style="color: var(--secondary); margin-right: 0.5rem;"></i>Child Safety Seats</h3>
+                <p>Ensure your child's safety with our certified child safety seats. Available for $10/day.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-users" style="color: var(--secondary); margin-right: 0.5rem;"></i>Additional Driver</h3>
+                <p>Add an additional driver to your rental agreement for $5/day. Share the driving experience.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-shield-alt" style="color: var(--secondary); margin-right: 0.5rem;"></i>Insurance Packages</h3>
+                <p>Comprehensive insurance options to protect you and your rental vehicle. Multiple coverage levels available.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-tools" style="color: var(--secondary); margin-right: 0.5rem;"></i>Roadside Assistance</h3>
+                <p>24/7 roadside assistance included with every rental. We're here when you need us.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-gas-pump" style="color: var(--secondary); margin-right: 0.5rem;"></i>Fuel Plans</h3>
+                <p>Pre-purchase fuel plans available. Return the car empty and save time at the pump.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-luggage-cart" style="color: var(--secondary); margin-right: 0.5rem;"></i>Luggage Rack Rental</h3>
+                <p>Need extra space for your belongings? Rent a roof rack or luggage carrier for $8/day. Perfect for family trips.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-wifi" style="color: var(--secondary); margin-right: 0.5rem;"></i>Wi-Fi Hotspot</h3>
+                <p>Stay connected on the road with our portable Wi-Fi hotspot. High-speed internet for $7/day. Perfect for business travelers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMBERSHIP PROGRAM -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Membership & Loyalty Program</h2>
+            <p style="text-align: center; margin-top: 1rem;">Join our loyalty program and enjoy exclusive benefits</p>
+        </div>
+        <div class="membership-tiers">
+            <div class="membership-card">
+                <h3 style="color: var(--secondary);">Silver</h3>
+                <div class="car-card-price" style="font-size: 1.5rem; margin: 1rem 0;">Free</div>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin-bottom: 0.8rem;">✓ 5% discount on all rentals</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Priority customer support</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Free GPS on rentals over 7 days</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Exclusive member offers</li>
+                </ul>
+                <a href="contact.html" class="btn btn-secondary" style="width: 100%; margin-top: 1.5rem;">Sign Up</a>
+            </div>
+            <div class="membership-card featured">
+                <div style="background: var(--secondary); color: var(--text); padding: 0.5rem; margin: -2.5rem -2.5rem 1.5rem; text-align: center; font-weight: bold;">MOST POPULAR</div>
+                <h3 style="color: var(--secondary);">Gold</h3>
+                <div class="car-card-price" style="font-size: 1.5rem; margin: 1rem 0;">$99/year</div>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin-bottom: 0.8rem;">✓ 10% discount on all rentals</li>
+                    <li style="margin-bottom: 0.8rem;">✓ VIP customer support</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Free GPS & child seat</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Early access to new vehicles</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Birthday bonus</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Points earning system</li>
+                </ul>
+                <a href="contact.html" class="btn" style="width: 100%; margin-top: 1.5rem;">Sign Up</a>
+            </div>
+            <div class="membership-card">
+                <h3 style="color: var(--secondary);">Platinum</h3>
+                <div class="car-card-price" style="font-size: 1.5rem; margin: 1rem 0;">$199/year</div>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin-bottom: 0.8rem;">✓ 15% discount on all rentals</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Dedicated account manager</li>
+                    <li style="margin-bottom: 0.8rem;">✓ All premium services included</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Complimentary upgrades</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Exclusive events access</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Double points earning</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Concierge service</li>
+                </ul>
+                <a href="contact.html" class="btn btn-secondary" style="width: 100%; margin-top: 1.5rem;">Sign Up</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUSINESS SOLUTIONS -->
+    <section class="section" style="background: var(--subtle);">
+        <div class="section-title">
+            <h2>Business Solutions</h2>
+        </div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>Corporate Accounts</h3>
+                <p>Streamlined billing, dedicated account management, and customized rental agreements for your business needs.</p>
+                <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                    <li style="margin-bottom: 0.8rem;">✓ Volume discounts</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Monthly invoicing</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Employee authorization system</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Usage reporting</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Fleet Management</h3>
+                <p>Complete fleet management solutions for businesses with multiple vehicles. Maintenance, tracking, and reporting included.</p>
+                <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                    <li style="margin-bottom: 0.8rem;">✓ Vehicle tracking</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Maintenance scheduling</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Driver management</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Cost analytics</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <a href="contact.html" class="btn">Contact Sales Team</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer carbon-fiber">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>VELOCITY BLACK</h3>
+                <p>Premium car rental service for your every journey. Experience luxury, reliability, and exceptional service.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="fleet.html">Our Fleet</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Car Categories</h3>
+                <ul>
+                    <li><a href="fleet.html">Economy</a></li>
+                    <li><a href="fleet.html">Compact</a></li>
+                    <li><a href="fleet.html">Sedan</a></li>
+                    <li><a href="fleet.html">SUV</a></li>
+                    <li><a href="fleet.html">Luxury</a></li>
+                    <li><a href="fleet.html">Sports</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@velocityblack.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Speed Avenue, City, State 12345</li>
+                    <li><i class="fas fa-clock"></i> Open 24/7</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VELOCITY BLACK. All rights reserved. | <a href="#" style="color: var(--accent);">Privacy Policy</a> | <a href="#" style="color: var(--accent);">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+

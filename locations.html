@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locations - VELOCITY BLACK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(220, 20, 60, 0.7) 100%), url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1920&h=600&fit=crop') center/cover;
+            padding: 150px 2rem 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+        .location-search {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        .location-search input {
+            width: 100%;
+            padding: 15px;
+            background: var(--subtle);
+            border: 2px solid var(--secondary);
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+        .map-container {
+            width: 100%;
+            height: 500px;
+            background: var(--subtle);
+            border: 2px solid var(--secondary);
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+        .location-card {
+            background: var(--subtle);
+            padding: 2rem;
+            border-left: 4px solid var(--secondary);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .location-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(220, 20, 60, 0.3);
+        }
+        .location-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+        .location-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .location-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+        }
+        .location-filter {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--subtle);
+            border: 2px solid var(--extra);
+            color: var(--accent);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active {
+            background: var(--secondary);
+            color: var(--text);
+            border-color: var(--secondary);
+        }
+        .airport-section {
+            background: var(--subtle);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">VELOCITY BLACK</a>
+            <ul class="nav-menu">
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle">Home <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html">Home Page</a></li>
+                        <li><a href="index2.html">Home Page 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="fleet.html">Fleet</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="locations.html" class="active">Locations</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="dashboard.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.9rem;">Dashboard</a>
+                <a href="login.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.9rem;">Login</a>
+                <a href="register.html" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Register</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <h1>Our Locations</h1>
+        <div class="location-search">
+            <input type="text" placeholder="Search by city or airport...">
+        </div>
+    </section>
+
+    <!-- INTERACTIVE MAP -->
+    <section class="section">
+        <div class="map-container">
+            <div style="text-align: center;">
+                <i class="fas fa-map-marked-alt" style="font-size: 4rem; margin-bottom: 1rem; color: var(--secondary);"></i>
+                <p style="font-size: 1.2rem;">Interactive Map</p>
+                <p style="color: var(--accent); margin-top: 0.5rem;">Click on markers to view location details</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION FILTERS -->
+    <section class="section">
+        <div class="location-filter">
+            <button class="filter-btn active">All Locations</button>
+            <button class="filter-btn">City</button>
+            <button class="filter-btn">Airport</button>
+            <button class="filter-btn">Downtown</button>
+        </div>
+
+        <!-- LOCATION CARDS -->
+        <div class="grid grid-2">
+            <div class="location-card">
+                <div class="location-header">
+                    <div>
+                        <h3>Downtown Office</h3>
+                        <p style="color: var(--accent); margin-top: 0.5rem;">Main Headquarters</p>
+                    </div>
+                    <span class="car-card-category">City</span>
+                </div>
+                <div style="width: 100%; height: 200px; background: var(--extra); margin: 1rem 0; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-building" style="font-size: 3rem; color: var(--accent);"></i>
+                </div>
+                <div class="location-info">
+                    <div class="location-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Speed Avenue, City, State </span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Open 24/7</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-car"></i>
+                        <span>150+ cars available</span>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem; width: 100%;">Get Directions</a>
+            </div>
+
+            <div class="location-card">
+                <div class="location-header">
+                    <div>
+                        <h3>Airport Terminal</h3>
+                        <p style="color: var(--accent); margin-top: 0.5rem;">International Airport</p>
+                    </div>
+                    <span class="car-card-category">Airport</span>
+                </div>
+                <div style="width: 100%; height: 200px; background: var(--extra); margin: 1rem 0; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-plane" style="font-size: 3rem; color: var(--accent);"></i>
+                </div>
+                <div class="location-info">
+                    <div class="location-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Airport Terminal 1, Gate A12</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4568</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Open 24/7</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-car"></i>
+                        <span>80+ cars available</span>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem; width: 100%;">Get Directions</a>
+            </div>
+
+            <div class="location-card">
+                <div class="location-header">
+                    <div>
+                        <h3>Train Station</h3>
+                        <p style="color: var(--accent); margin-top: 0.5rem;">Central Station</p>
+                    </div>
+                    <span class="car-card-category">City</span>
+                </div>
+                <div style="width: 100%; height: 200px; background: var(--extra); margin: 1rem 0; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-train" style="font-size: 3rem; color: var(--accent);"></i>
+                </div>
+                <div class="location-info">
+                    <div class="location-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>456 Station Road, City Center</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4569</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Sun: 6AM-10PM</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-car"></i>
+                        <span>60+ cars available</span>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem; width: 100%;">Get Directions</a>
+            </div>
+
+            <div class="location-card">
+                <div class="location-header">
+                    <div>
+                        <h3>Business Office</h3>
+                        <p style="color: var(--accent); margin-top: 0.5rem;">Financial Center</p>
+                    </div>
+                    <span class="car-card-category">Downtown</span>
+                </div>
+                <div style="width: 100%; height: 200px; background: var(--extra); margin: 1rem 0; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-briefcase" style="font-size: 3rem; color: var(--accent);"></i>
+                </div>
+                <div class="location-info">
+                    <div class="location-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>789 Business Blvd, Suite 100</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4570</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 7AM-8PM</span>
+                    </div>
+                    <div class="location-info-item">
+                        <i class="fas fa-car"></i>
+                        <span>90+ cars available</span>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1.5rem; width: 100%;">Get Directions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AIRPORT LOCATIONS -->
+    <section class="airport-section">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div class="section-title">
+                <h2>Airport Pickup Instructions</h2>
+            </div>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3><i class="fas fa-info-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>Pickup Process</h3>
+                    <ol style="padding-left: 1.5rem; color: var(--accent);">
+                        <li style="margin-bottom: 0.8rem;">After collecting your luggage, proceed to the arrivals area</li>
+                        <li style="margin-bottom: 0.8rem;">Call our airport location: +1 (555) 123-4568</li>
+                        <li style="margin-bottom: 0.8rem;">Our representative will meet you at the designated pickup point</li>
+                        <li style="margin-bottom: 0.8rem;">Complete the rental agreement and vehicle inspection</li>
+                        <li style="margin-bottom: 0.8rem;">You're ready to hit the road!</li>
+                    </ol>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-map-marked-alt" style="color: var(--secondary); margin-right: 0.5rem;"></i>Terminal Information</h3>
+                    <p><strong>Terminal 1:</strong> Gate A12 - Main pickup point</p>
+                    <p><strong>Terminal 2:</strong> Gate B5 - Secondary pickup point</p>
+                    <p><strong>Terminal 3:</strong> Gate C8 - Available on request</p>
+                    <p style="margin-top: 1rem; color: var(--accent);">Our vehicles are clearly marked with VELOCITY BLACK branding. Look for our red and chrome signage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer carbon-fiber">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>VELOCITY BLACK</h3>
+                <p>Premium car rental service for your every journey. Experience luxury, reliability, and exceptional service.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="fleet.html">Our Fleet</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Car Categories</h3>
+                <ul>
+                    <li><a href="fleet.html">Economy</a></li>
+                    <li><a href="fleet.html">Compact</a></li>
+                    <li><a href="fleet.html">Sedan</a></li>
+                    <li><a href="fleet.html">SUV</a></li>
+                    <li><a href="fleet.html">Luxury</a></li>
+                    <li><a href="fleet.html">Sports</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@velocityblack.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Speed Avenue, City, State 12345</li>
+                    <li><i class="fas fa-clock"></i> Open 24/7</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VELOCITY BLACK. All rights reserved. | <a href="#" style="color: var(--accent);">Privacy Policy</a> | <a href="#" style="color: var(--accent);">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+
+

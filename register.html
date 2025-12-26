@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - VELOCITY BLACK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+    <style>
+        body {
+            padding-top: 0;
+            background: var(--primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .register-container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--subtle);
+            border: 2px solid var(--extra);
+            padding: 3rem;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            box-shadow: 0 10px 50px rgba(220, 20, 60, 0.3);
+        }
+        
+        .register-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .register-logo a {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(192, 192, 192, 0.8);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .register-logo a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 30px rgba(220, 20, 60, 1);
+            transform: scale(1.05);
+        }
+        
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .register-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        
+        .register-header p {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+        
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            font-family: var(--font-accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            background: var(--primary);
+            border: 1px solid var(--extra);
+            color: var(--text);
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:hover,
+        .form-group select:hover {
+            border-color: var(--accent);
+            background: var(--extra);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px rgba(220, 20, 60, 0.5);
+        }
+        
+        .form-group-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .form-group-checkbox input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.3rem;
+            cursor: pointer;
+        }
+        
+        .form-group-checkbox label {
+            font-size: 0.9rem;
+            color: var(--accent);
+            cursor: pointer;
+            text-transform: none;
+        }
+        
+        .form-group-checkbox a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .form-group-checkbox a:hover {
+            color: var(--highlight);
+            text-decoration: underline;
+        }
+        
+        .register-form .btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--extra);
+        }
+        
+        .divider span {
+            background: var(--subtle);
+            padding: 0 1rem;
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .social-register {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 12px;
+            background: var(--primary);
+            border: 1px solid var(--extra);
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            border-color: var(--secondary);
+            background: var(--extra);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--extra);
+        }
+        
+        .login-link p {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-link a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .login-link a:hover {
+            color: var(--highlight);
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .register-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .register-logo a {
+                font-size: 1.5rem;
+            }
+            
+            .register-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-logo">
+            <a href="index.html">VELOCITY BLACK</a>
+        </div>
+        
+        <div class="register-header">
+            <h1>Create Account</h1>
+            <p>Join VELOCITY BLACK and start your journey</p>
+        </div>
+        
+        <form class="register-form" action="#" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" placeholder="John" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" placeholder="Doe" required>
+                </div>
+            </div>
+            
+            <div class="form-group full-width">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+            </div>
+            
+            <div class="form-group full-width">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+                </div>
+            </div>
+            
+            <div class="form-group full-width">
+                <label for="license-number">Driver's License Number</label>
+                <input type="text" id="license-number" name="license-number" placeholder="DL-123456789" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="license-expiry">License Expiry Date</label>
+                    <input type="date" id="license-expiry" name="license-expiry" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date-of-birth">Date of Birth</label>
+                    <input type="date" id="date-of-birth" name="date-of-birth" required>
+                </div>
+            </div>
+            
+            <div class="form-group full-width">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="123 Main Street, City, State, ZIP" required>
+            </div>
+            
+            <div class="form-group full-width form-group-checkbox">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+            
+            <div class="form-group full-width form-group-checkbox">
+                <input type="checkbox" id="newsletter" name="newsletter">
+                <label for="newsletter">Subscribe to our newsletter for special offers and updates</label>
+            </div>
+            
+            <button type="submit" class="btn">Create Account</button>
+        </form>
+        
+        <div class="divider">
+            <span>OR</span>
+        </div>
+        
+        <div class="social-register">
+            <a href="#" class="social-btn">
+                <i class="fab fa-google"></i>
+                Sign up with Google
+            </a>
+            <a href="#" class="social-btn">
+                <i class="fab fa-facebook-f"></i>
+                Sign up with Facebook
+            </a>
+        </div>
+        
+        <div class="login-link">
+            <p>Already have an account?</p>
+            <a href="login.html">Sign in here</a>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+
+
